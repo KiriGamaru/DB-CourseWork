@@ -1,0 +1,13 @@
+        private void pictureBoxEyeClose_Click(object sender, EventArgs e)
+        {
+            textBoxPass.UseSystemPasswordChar = false;
+            pictureBoxEyeClose.Visible = false;
+            pictureBoxEye.Visible = true;
+        }
+
+        private void pictureBoxEye_Click(object sender, EventArgs e)
+        {
+            textBoxPass.UseSystemPasswordChar = true;
+            pictureBoxEyeClose.Visible = true;
+            pictureBoxEye.Visible = false;
+        }

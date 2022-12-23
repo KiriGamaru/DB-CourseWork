@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33027.239
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBGenerator", "DBGenerator\DBGenerator.csproj", "{27247630-DBB2-45EA-A2E2-2A23CC64FF60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27247630-DBB2-45EA-A2E2-2A23CC64FF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27247630-DBB2-45EA-A2E2-2A23CC64FF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27247630-DBB2-45EA-A2E2-2A23CC64FF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27247630-DBB2-45EA-A2E2-2A23CC64FF60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B44A069-A669-4A67-B73D-0B79543870E1}
+	EndGlobalSection
+EndGlobal
