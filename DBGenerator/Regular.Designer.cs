@@ -38,15 +38,16 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbSeller = new System.Windows.Forms.TextBox();
             this.tbBun = new System.Windows.Forms.TextBox();
             this.tbDate = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.labelSeller = new System.Windows.Forms.Label();
             this.labelBun = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +93,7 @@
             this.pbErase.Size = new System.Drawing.Size(42, 40);
             this.pbErase.TabIndex = 3;
             this.pbErase.TabStop = false;
+            this.pbErase.Click += new System.EventHandler(this.pbErase_Click);
             // 
             // textBoxSearch
             // 
@@ -112,10 +115,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 40);
+            this.label1.Size = new System.Drawing.Size(152, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Продажи";
             // 
@@ -134,34 +137,44 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(544, 343);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(535, 343);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 21);
+            this.label2.Size = new System.Drawing.Size(186, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "Управление записями";
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.tbSeller);
             this.panel1.Controls.Add(this.tbBun);
             this.panel1.Controls.Add(this.tbDate);
             this.panel1.Controls.Add(this.tbID);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.labelSeller);
             this.panel1.Controls.Add(this.labelBun);
             this.panel1.Controls.Add(this.labelDate);
             this.panel1.Controls.Add(this.labelID);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(42, 367);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(364, 204);
             this.panel1.TabIndex = 3;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // tbSeller
             // 
             this.tbSeller.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbSeller.Location = new System.Drawing.Point(165, 138);
+            this.tbSeller.Location = new System.Drawing.Point(179, 151);
             this.tbSeller.Name = "tbSeller";
             this.tbSeller.Size = new System.Drawing.Size(152, 29);
             this.tbSeller.TabIndex = 8;
@@ -169,7 +182,7 @@
             // tbBun
             // 
             this.tbBun.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbBun.Location = new System.Drawing.Point(165, 103);
+            this.tbBun.Location = new System.Drawing.Point(179, 116);
             this.tbBun.Name = "tbBun";
             this.tbBun.Size = new System.Drawing.Size(152, 29);
             this.tbBun.TabIndex = 7;
@@ -177,7 +190,7 @@
             // tbDate
             // 
             this.tbDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbDate.Location = new System.Drawing.Point(165, 68);
+            this.tbDate.Location = new System.Drawing.Point(179, 81);
             this.tbDate.Name = "tbDate";
             this.tbDate.Size = new System.Drawing.Size(152, 29);
             this.tbDate.TabIndex = 6;
@@ -185,16 +198,26 @@
             // tbID
             // 
             this.tbID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbID.Location = new System.Drawing.Point(165, 33);
+            this.tbID.Location = new System.Drawing.Point(179, 46);
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(152, 29);
             this.tbID.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(72, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 25);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Запись:";
             // 
             // labelSeller
             // 
             this.labelSeller.AutoSize = true;
             this.labelSeller.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelSeller.Location = new System.Drawing.Point(27, 138);
+            this.labelSeller.Location = new System.Drawing.Point(41, 151);
             this.labelSeller.Name = "labelSeller";
             this.labelSeller.Size = new System.Drawing.Size(132, 21);
             this.labelSeller.TabIndex = 4;
@@ -204,7 +227,7 @@
             // 
             this.labelBun.AutoSize = true;
             this.labelBun.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelBun.Location = new System.Drawing.Point(37, 106);
+            this.labelBun.Location = new System.Drawing.Point(51, 119);
             this.labelBun.Name = "labelBun";
             this.labelBun.Size = new System.Drawing.Size(122, 21);
             this.labelBun.TabIndex = 3;
@@ -214,7 +237,7 @@
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelDate.Location = new System.Drawing.Point(115, 71);
+            this.labelDate.Location = new System.Drawing.Point(129, 84);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(44, 21);
             this.labelDate.TabIndex = 2;
@@ -224,21 +247,11 @@
             // 
             this.labelID.AutoSize = true;
             this.labelID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelID.Location = new System.Drawing.Point(134, 36);
+            this.labelID.Location = new System.Drawing.Point(148, 49);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(25, 21);
             this.labelID.TabIndex = 1;
             this.labelID.Text = "ID";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(37, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 21);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Запись:";
             // 
             // panel2
             // 
@@ -308,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -339,5 +353,6 @@
         private Button buttonUpdate;
         private Button buttonDelete;
         private Button buttonNew;
+        private PictureBox pictureBox1;
     }
 }

@@ -16,5 +16,10 @@ namespace DBGenerator
         {
             InitializeComponent();
         }
+
+        private void pbErase_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
