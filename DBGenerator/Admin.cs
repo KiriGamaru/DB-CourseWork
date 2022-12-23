@@ -16,8 +16,6 @@ namespace DBGenerator
             }
         }
 
-
-
         public Form1()
         {
             InitializeComponent();
