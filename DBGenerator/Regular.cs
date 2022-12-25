@@ -44,6 +44,7 @@ namespace DBGenerator
             dataGridView1.Columns.Add("SecretIngredient", "Номер секретного ингрединта");
             dataGridView1.Columns.Add("Size", "Размер");
             dataGridView1.Columns.Add("IsNew", String.Empty);
+            dataGridView1.Columns["IsNew"].Visible = false;
         }
 
         private void ReadSingleRow(DataGridView dgw, IDataRecord record)
@@ -77,6 +78,7 @@ namespace DBGenerator
             tbName.Text = "";
             tbSecretIngredient.Text = "";
             tbSize.Text = "";
+            textBoxSearch.Text = "";
         }
 
 

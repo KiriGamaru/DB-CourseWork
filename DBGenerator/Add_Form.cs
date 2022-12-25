@@ -46,5 +46,12 @@ values (N'{name}', N'{secretIngredient}', N'{size}')";
             }
             dataBase.closeConnection();
         }
+
+        private void pbErase_Click(object sender, EventArgs e)
+        {
+            tbName.Text = "";
+            tbSecretIngredient.Text = "";
+            tbSize.Text = "";
+        }
     }
 }

@@ -89,6 +89,7 @@
             this.pbErase.Size = new System.Drawing.Size(42, 40);
             this.pbErase.TabIndex = 5;
             this.pbErase.TabStop = false;
+            this.pbErase.Click += new System.EventHandler(this.pbErase_Click);
             // 
             // tbSize
             // 
