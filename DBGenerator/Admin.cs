@@ -5,6 +5,8 @@ namespace DBGenerator
 {
     public partial class Form1 : Form
     {
+        DataBase dataBase = new();
+
         struct Range
         {
             public double min;
@@ -50,12 +52,20 @@ namespace DBGenerator
             {
                 connection.Open();
                 SqlCommand command = new(txtQuery.Text, connection);
-                using (var reader = command.ExecuteReader())
+                try
                 {
-                    DataTable table = new();
-                    table.Load(reader);
-                    dgName.DataSource = table;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        DataTable table = new();
+                        table.Load(reader);
+                        dgName.DataSource = table;
+                    }
                 }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    MessageBox.Show("Неправильный запрос");
+                }
+
             }
         }
 
@@ -163,6 +173,137 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
 
 
             }
+        }
+
+
+        private void AddBakers()
+        {
+            dataBase.openConnection();
+
+            var count = udCountBakers.Value;
+
+            var query = $@"SET NOCOUNT ON;
+	
+	SELECT row_number() OVER(ORDER BY ID) AS buns_id, ID INTO #buns_ids FROM Buns;
+
+	DECLARE @buns_ids_am BIGINT;
+	SELECT @buns_ids_am = COUNT(#buns_ids.ID) FROM #buns_ids;
+
+	DECLARE @ehd_am INT;
+	SET @ehd_am = {count};
+
+	CREATE TABLE  #CSV_bakers(
+		bakers_id INT PRIMARY KEY,
+		bakers_name VARCHAR(50),
+		bakers_surname NVARCHAR(50),
+	);
+
+	BULK INSERT  #CSV_bakers
+	FROM 'J:\DB\CDB\names.csv'
+	WITH(
+		FIELDTERMINATOR = ';',
+		ROWTERMINATOR ='\n',
+		FIRSTROW = 2
+	);
+
+	WHILE @ehd_am > 0
+		BEGIN
+
+			DECLARE @buns_id_new BIGINT;
+			SET @buns_id_new = RAND() * @buns_ids_am + 1;
+
+			DECLARE @buns_id BIGINT;
+
+			SELECT @buns_id = #buns_ids.ID FROM #buns_ids WHERE #buns_ids.id = @buns_id_new;
+
+			
+			SELECT * INTO #rowd FROM Bakers WHERE ID = @buns_id_new;
+
+
+			DECLARE @count TINYINT;
+			SELECT @count = COUNT(#rowd.ID) FROM #rowd;
+
+
+			DECLARE @bakers_name NVARCHAR(50);
+			DECLARE @bakers_surname NVARCHAR(50);
+			SELECT TOP 1 @bakers_name = bakers_name, @bakers_surname = bakers_surname FROM #CSV_bakers ORDER BY NEWID();
+			
+
+			IF @count = 0
+				INSERT INTO Bakers(Buns, Name, SurName) VALUES(@buns_id, @bakers_name, @bakers_surname);
+
+			SET @ehd_am -= 1;
+			DROP TABLE #rowd;
+		END
+		
+			
+		DROP TABLE #buns_ids;
+		DROP TABLE #CSV_bakers;";
+
+            var command = new SqlCommand(query, dataBase.GetConnection());
+            command.ExecuteNonQuery();
+            dataBase.closeConnection();
+            MessageBox.Show("Генерация прошла успешно");
+        }
+
+
+        private void AddSellers()
+        {
+            dataBase.openConnection();
+
+            var count = udCountSellers.Value;
+
+            var query = $@"SET NOCOUNT ON;
+
+	CREATE TABLE  #CSV_sellers(
+		sellers_id INT PRIMARY KEY,
+		sellers_name VARCHAR(50),
+		sellers_surname NVARCHAR(50),
+	);
+
+	BULK INSERT  #CSV_sellers
+	FROM 'J:\DB\CDB\names.csv'
+	WITH(
+		FIELDTERMINATOR = ';',
+		ROWTERMINATOR ='\n',
+		FIRSTROW = 2
+	);
+
+	DECLARE @sellers_amount BIGINT;
+	SET @sellers_amount = {count};
+
+	WHILE @sellers_amount > 0
+		BEGIN
+			DECLARE @sellers_name NVARCHAR(50);
+			DECLARE @sellers_surname NVARCHAR(50);
+			SELECT TOP 1 @sellers_name = sellers_name, @sellers_surname = sellers_surname FROM #CSV_sellers ORDER BY NEWID();
+			
+			INSERT INTO Sellers(name, surname) VALUES(@sellers_name, @sellers_surname);
+			SET @sellers_amount -= 1;
+		END
+	DROP TABLE #CSV_sellers;";
+
+
+            var command = new SqlCommand(query, dataBase.GetConnection());
+            command.ExecuteNonQuery();
+            dataBase.closeConnection();
+            MessageBox.Show("Генерация прошла успешно");
+        }
+
+
+
+
+
+
+        private void btnAddBakers_Click(object sender, EventArgs e)
+        {
+            AddBakers();
+
+        }
+
+        private void btnAddSellers_Click(object sender, EventArgs e)
+        {
+            AddSellers();
         }
     }
 }
