@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DBGenerator
 {
@@ -69,9 +70,19 @@ namespace DBGenerator
             reader.Close();
         }
 
+
+        private void ClearFields()
+        {
+            tbID.Text = "";
+            tbName.Text = "";
+            tbSecretIngredient.Text = "";
+            tbSize.Text = "";
+        }
+
+
         private void pbErase_Click(object sender, EventArgs e)
         {
-
+            ClearFields();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -91,6 +102,7 @@ namespace DBGenerator
         private void pbUpdate_Click(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridView1);
+            ClearFields();
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
@@ -105,8 +117,9 @@ namespace DBGenerator
         {
             dgw.Rows.Clear();
 
+
             string queryString = $@"select * from Buns 
-where concat (ID, Name, SecretIngredient, Size) like '%" + textBoxSearch.Text + "%'";
+where concat (ID, Name, SecretIngredient, Size) like N'%" + textBoxSearch.Text + "%'";
 
             SqlCommand com = new SqlCommand(queryString, dataBase.GetConnection());
 
@@ -162,6 +175,23 @@ where concat (ID, Name, SecretIngredient, Size) like '%" + textBoxSearch.Text + 
                     var command = new SqlCommand(deleteQuery, dataBase.GetConnection());
                     command.ExecuteNonQuery();
                 }
+
+                if(rowState == RowState.Modified)
+                {
+                    var id = dataGridView1.Rows[index].Cells[0].Value.ToString();
+                    var name = dataGridView1.Rows[index].Cells[1].Value.ToString();
+                    var secretIngredient = dataGridView1.Rows[index].Cells[2].Value.ToString();
+                    var size = dataGridView1.Rows[index].Cells[3].Value.ToString();
+
+                    var changeQuery = $@"update Buns 
+set Name = N'{name}', SecretIngredient = '{secretIngredient}', Size = N'{size}'
+where ID = '{id}'";
+
+                    var command = new SqlCommand (changeQuery, dataBase.GetConnection());
+                    command.ExecuteNonQuery(); 
+
+                }
+
             }
 
             dataBase.closeConnection();
@@ -170,11 +200,43 @@ where concat (ID, Name, SecretIngredient, Size) like '%" + textBoxSearch.Text + 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             deleteRow();
+            ClearFields();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             Update();
+            ClearFields();
         }
+
+        private void Change()
+        {
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+
+            var id = tbID.Text;
+            var name = tbName.Text;
+            var size = tbSize.Text;
+            int secretIngredient;
+
+            if (dataGridView1.Rows[selectedRowIndex].Cells[0].Value.ToString() != string.Empty)
+            {
+                if(int.TryParse(tbSecretIngredient.Text, out secretIngredient) && secretIngredient<15)
+                {
+                    dataGridView1.Rows[selectedRowIndex].SetValues(id, name, secretIngredient, size);
+                    dataGridView1.Rows[selectedRowIndex].Cells[4].Value = RowState.Modified;
+                }
+                else
+                {
+                    MessageBox.Show("Номер секретного ингредиента должен быть от 1 до 14");
+                }
+            }
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            Change();
+            ClearFields();
+        }
+
     }
 }

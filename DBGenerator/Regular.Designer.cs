@@ -50,7 +50,7 @@
             this.labelID = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonChange = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
             this.panelUp.SuspendLayout();
@@ -260,7 +260,7 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.buttonSave);
-            this.panel2.Controls.Add(this.buttonUpdate);
+            this.panel2.Controls.Add(this.buttonChange);
             this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.buttonNew);
             this.panel2.Location = new System.Drawing.Point(464, 355);
@@ -278,14 +278,15 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // buttonUpdate
+            // buttonChange
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(34, 103);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(117, 41);
-            this.buttonUpdate.TabIndex = 2;
-            this.buttonUpdate.Text = "изменить";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonChange.Location = new System.Drawing.Point(34, 103);
+            this.buttonChange.Name = "buttonChange";
+            this.buttonChange.Size = new System.Drawing.Size(117, 41);
+            this.buttonChange.TabIndex = 2;
+            this.buttonChange.Text = "изменить";
+            this.buttonChange.UseVisualStyleBackColor = true;
+            this.buttonChange.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
@@ -357,7 +358,7 @@
         private Label label3;
         private Panel panel2;
         private Button buttonSave;
-        private Button buttonUpdate;
+        private Button buttonChange;
         private Button buttonDelete;
         private Button buttonNew;
         private PictureBox pictureBox1;
