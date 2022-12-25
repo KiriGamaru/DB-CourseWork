@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace DBGenerator
 {
     class DataBase
     {
-        SqlConnection sqlConnection = new("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=J:\\DB\\KGBD.mdf;Integrated Security=True;Connect Timeout=30");
+        private static String pathCSV = @"J:\DB\CDB\";
+        private static String path = @"J:\DB\KGBD.mdf";
+
+
+        SqlConnection sqlConnection = new(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+path+";Integrated Security=True;Connect Timeout=30");
 
         public void openConnection()
         {
@@ -28,6 +33,16 @@ namespace DBGenerator
         public SqlConnection GetConnection()
         {
             return sqlConnection;
+        }
+
+        public string getPath()
+        {
+            return path;
+        }
+
+        public string getCSVPath()
+        {
+            return pathCSV;
         }
     }
 }

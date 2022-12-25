@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 
 namespace DBGenerator
 {
+    
     public partial class Form1 : Form
     {
         DataBase dataBase = new();
@@ -37,7 +38,7 @@ namespace DBGenerator
             SqlConnectionStringBuilder sqlConnectionString = new();
 
             sqlConnectionString.DataSource = @"(LocalDB)\MSSQLLocalDB";
-            sqlConnectionString.AttachDBFilename = @"J:\DB\KGBD.mdf";
+            sqlConnectionString.AttachDBFilename = dataBase.getPath();
             sqlConnectionString.IntegratedSecurity = true;
             sqlConnectionString.ConnectTimeout = 30;
 
@@ -178,6 +179,8 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
 
         private void AddBakers()
         {
+            var csvPath = dataBase.getCSVPath();
+
             dataBase.openConnection();
 
             var count = udCountBakers.Value;
@@ -199,7 +202,7 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
 	);
 
 	BULK INSERT  #CSV_bakers
-	FROM 'J:\DB\CDB\names.csv'
+	FROM '{csvPath}names.csv'
 	WITH(
 		FIELDTERMINATOR = ';',
 		ROWTERMINATOR ='\n',
@@ -249,6 +252,8 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
 
         private void AddSellers()
         {
+            var csvPath = dataBase.getCSVPath();
+
             dataBase.openConnection();
 
             var count = udCountSellers.Value;
@@ -262,7 +267,7 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
 	);
 
 	BULK INSERT  #CSV_sellers
-	FROM 'J:\DB\CDB\names.csv'
+	FROM '{csvPath}names.csv'
 	WITH(
 		FIELDTERMINATOR = ';',
 		ROWTERMINATOR ='\n',
@@ -294,7 +299,6 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
         private void AddSales()
         {
             dataBase.openConnection();
-
             var count = udCountSales.Value;
             var query = $@"SET NOCOUNT ON;
 
