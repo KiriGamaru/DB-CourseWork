@@ -54,8 +54,8 @@ where login_user = '{loginUser}' and password_user = '{passUser}'";
                     Form1 form1 = new Form1();
                     Regular regform = new Regular();
                     this.Hide();
-                    form1.Show();
                     regform.Show();
+                    form1.Show();
                     //__________
                 }
                 else
