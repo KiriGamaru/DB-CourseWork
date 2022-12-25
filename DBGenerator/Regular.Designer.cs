@@ -103,6 +103,7 @@
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(192, 29);
             this.textBoxSearch.TabIndex = 2;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // pbSearch
             // 
@@ -275,6 +276,7 @@
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonUpdate
             // 
@@ -293,6 +295,7 @@
             this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonNew
             // 

@@ -41,7 +41,7 @@ namespace DBGenerator
             dataGridView1.Columns.Add("ID", "id");
             dataGridView1.Columns.Add("Name", "Название");
             dataGridView1.Columns.Add("SecretIngredient", "Номер секретного ингрединта");
-            dataGridView1.Columns.Add("size", "Размер");
+            dataGridView1.Columns.Add("Size", "Размер");
             dataGridView1.Columns.Add("IsNew", String.Empty);
         }
 
@@ -98,6 +98,83 @@ namespace DBGenerator
             Add_Form addForm = new Add_Form();
             addForm.Show();
 
+        }
+
+
+        private void Search(DataGridView dgw)
+        {
+            dgw.Rows.Clear();
+
+            string queryString = $@"select * from Buns 
+where concat (ID, Name, SecretIngredient, Size) like '%" + textBoxSearch.Text + "%'";
+
+            SqlCommand com = new SqlCommand(queryString, dataBase.GetConnection());
+
+            dataBase.openConnection();
+
+            SqlDataReader read = com.ExecuteReader();
+
+            while(read.Read())
+            {
+                ReadSingleRow(dgw, read);
+            }
+            read.Close();
+        }
+
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            Search(dataGridView1);
+        }
+
+        private void deleteRow()
+        {
+            int index = dataGridView1.CurrentCell.RowIndex;
+
+            dataGridView1.Rows[index].Visible = false;
+
+            if (dataGridView1.Rows[index].Cells[0].Value.ToString() == string.Empty)
+            {
+                dataGridView1.Rows[index].Cells[4].Value = RowState.Deleted;
+                return;
+            }
+
+            dataGridView1.Rows[index].Cells[4].Value = RowState.Deleted;
+
+        }
+
+
+        private void Update()
+        {
+            dataBase.openConnection();
+
+            for(int index = 0; index < dataGridView1.Rows.Count; index++)
+            {
+                var rowState = (RowState)dataGridView1.Rows[index].Cells[4].Value;
+
+                if(rowState == RowState.Existed)
+                    continue;
+
+                if(rowState == RowState.Deleted)
+                {
+                    var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
+                    var deleteQuery = $"delete from buns where ID = {id}";
+                    var command = new SqlCommand(deleteQuery, dataBase.GetConnection());
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            dataBase.closeConnection();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            deleteRow();
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            Update();
         }
     }
 }
