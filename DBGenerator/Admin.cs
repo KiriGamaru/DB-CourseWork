@@ -291,7 +291,65 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
         }
 
 
+        private void AddSales()
+        {
+            dataBase.openConnection();
 
+            var count = udCountSales.Value;
+            var query = $@"SET NOCOUNT ON;
+
+	SELECT row_number() OVER(ORDER BY sellers_id) AS id, sellers_id INTO #sel_ids FROM Sellers;
+
+	DECLARE @sel_ids_am BIGINT;
+	SELECT @sel_ids_am = COUNT(#sel_ids.ID) FROM #sel_ids;
+
+
+	SELECT row_number() OVER(ORDER BY ID) AS buns_id, ID INTO #buns_ids FROM Buns;
+
+	DECLARE @buns_ids_am BIGINT;
+	SELECT @buns_ids_am = COUNT(#buns_ids.ID) FROM #buns_ids;
+
+	DECLARE @ehd_am INT;
+	SET @ehd_am = {count};
+
+	WHILE @ehd_am > 0
+		BEGIN
+			DECLARE @sel_id_new BIGINT;
+			SET @sel_id_new = RAND() * @sel_ids_am + 1;
+
+			DECLARE @buns_id_new BIGINT;
+			SET @buns_id_new = RAND() * @buns_ids_am + 1;
+
+			DECLARE @sellers_id BIGINT;
+			DECLARE @buns_id BIGINT;
+
+			SELECT @sellers_id = #sel_ids.ID FROM #sel_ids WHERE #sel_ids.id = @sel_id_new;
+			SELECT @buns_id= #buns_ids.ID FROM #buns_ids WHERE #buns_ids.id = @buns_id_new;
+			
+			SELECT * INTO #rowd FROM Sales WHERE sellers_id = @sellers_id AND buns_id = @buns_id;
+
+			DECLARE @count TINYINT;
+			SELECT @count = COUNT(#rowd.sellers_id) FROM #rowd;
+
+			DECLARE @date DATE;
+			SET @date = (SELECT DATEADD (DAY,ABS(CHECKSUM(NEWID())%9100),'2000-01-01'));
+
+			IF @count = 0
+				INSERT INTO Sales(sellers_id, buns_id, date) VALUES(@sellers_id, @buns_id, @date);
+
+			SET @ehd_am -= 1;
+			DROP TABLE #rowd;
+		END
+		
+			
+		DROP TABLE #sel_ids;
+		DROP TABLE #buns_ids;";
+
+            var command = new SqlCommand(query, dataBase.GetConnection());
+            command.ExecuteNonQuery();
+            dataBase.closeConnection();
+            MessageBox.Show("Генерация прошла успешно");
+        }
 
 
 
@@ -304,6 +362,11 @@ VALUES(N'{bun}',N'{size}',N'{secretIngredient}')"
         private void btnAddSellers_Click(object sender, EventArgs e)
         {
             AddSellers();
+        }
+
+        private void buttonAddSales_Click(object sender, EventArgs e)
+        {
+            AddSales();
         }
     }
 }

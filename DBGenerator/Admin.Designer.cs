@@ -68,13 +68,17 @@
             this.udCount = new System.Windows.Forms.NumericUpDown();
             this.tb1 = new System.Windows.Forms.TrackBar();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btnAddBakers = new System.Windows.Forms.Button();
-            this.udCountBakers = new System.Windows.Forms.NumericUpDown();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.buttonAddSales = new System.Windows.Forms.Button();
+            this.udCountSales = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
             this.btnAddSellers = new System.Windows.Forms.Button();
             this.udCountSellers = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnAddBakers = new System.Windows.Forms.Button();
+            this.udCountBakers = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgName)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,9 +99,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.udCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb1)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udCountBakers)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udCountSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udCountSellers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udCountBakers)).BeginInit();
             this.SuspendLayout();
             // 
             // txtQuery
@@ -134,6 +140,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -502,35 +509,6 @@
             this.tabPage3.Text = "генератор пекарей";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(226, 152);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(124, 25);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Колличество";
-            // 
-            // btnAddBakers
-            // 
-            this.btnAddBakers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddBakers.Location = new System.Drawing.Point(196, 247);
-            this.btnAddBakers.Name = "btnAddBakers";
-            this.btnAddBakers.Size = new System.Drawing.Size(184, 56);
-            this.btnAddBakers.TabIndex = 6;
-            this.btnAddBakers.Text = "запустить";
-            this.btnAddBakers.UseVisualStyleBackColor = true;
-            this.btnAddBakers.Click += new System.EventHandler(this.btnAddBakers_Click);
-            // 
-            // udCountBakers
-            // 
-            this.udCountBakers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.udCountBakers.Location = new System.Drawing.Point(230, 195);
-            this.udCountBakers.Name = "udCountBakers";
-            this.udCountBakers.Size = new System.Drawing.Size(120, 33);
-            this.udCountBakers.TabIndex = 5;
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label16);
@@ -543,34 +521,102 @@
             this.tabPage4.Text = "генератор продавцов";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label17);
+            this.tabPage5.Controls.Add(this.buttonAddSales);
+            this.tabPage5.Controls.Add(this.udCountSales);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(584, 482);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "генератор продаж";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(230, 166);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(124, 25);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "Колличество";
+            // 
+            // buttonAddSales
+            // 
+            this.buttonAddSales.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonAddSales.Location = new System.Drawing.Point(200, 261);
+            this.buttonAddSales.Name = "buttonAddSales";
+            this.buttonAddSales.Size = new System.Drawing.Size(184, 56);
+            this.buttonAddSales.TabIndex = 12;
+            this.buttonAddSales.Text = "запустить";
+            this.buttonAddSales.UseVisualStyleBackColor = true;
+            this.buttonAddSales.Click += new System.EventHandler(this.buttonAddSales_Click);
+            // 
+            // udCountSales
+            // 
+            this.udCountSales.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.udCountSales.Location = new System.Drawing.Point(234, 209);
+            this.udCountSales.Name = "udCountSales";
+            this.udCountSales.Size = new System.Drawing.Size(120, 33);
+            this.udCountSales.TabIndex = 11;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(228, 152);
+            this.label16.Location = new System.Drawing.Point(230, 166);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(124, 25);
-            this.label16.TabIndex = 10;
+            this.label16.TabIndex = 13;
             this.label16.Text = "Колличество";
             // 
             // btnAddSellers
             // 
             this.btnAddSellers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddSellers.Location = new System.Drawing.Point(198, 247);
+            this.btnAddSellers.Location = new System.Drawing.Point(200, 261);
             this.btnAddSellers.Name = "btnAddSellers";
             this.btnAddSellers.Size = new System.Drawing.Size(184, 56);
-            this.btnAddSellers.TabIndex = 9;
+            this.btnAddSellers.TabIndex = 12;
             this.btnAddSellers.Text = "запустить";
             this.btnAddSellers.UseVisualStyleBackColor = true;
-            this.btnAddSellers.Click += new System.EventHandler(this.btnAddSellers_Click);
             // 
             // udCountSellers
             // 
             this.udCountSellers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.udCountSellers.Location = new System.Drawing.Point(232, 195);
+            this.udCountSellers.Location = new System.Drawing.Point(234, 209);
             this.udCountSellers.Name = "udCountSellers";
             this.udCountSellers.Size = new System.Drawing.Size(120, 33);
-            this.udCountSellers.TabIndex = 8;
+            this.udCountSellers.TabIndex = 11;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(230, 166);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(124, 25);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Колличество";
+            // 
+            // btnAddBakers
+            // 
+            this.btnAddBakers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddBakers.Location = new System.Drawing.Point(200, 261);
+            this.btnAddBakers.Name = "btnAddBakers";
+            this.btnAddBakers.Size = new System.Drawing.Size(184, 56);
+            this.btnAddBakers.TabIndex = 9;
+            this.btnAddBakers.Text = "запустить";
+            this.btnAddBakers.UseVisualStyleBackColor = true;
+            // 
+            // udCountBakers
+            // 
+            this.udCountBakers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.udCountBakers.Location = new System.Drawing.Point(234, 209);
+            this.udCountBakers.Name = "udCountBakers";
+            this.udCountBakers.Size = new System.Drawing.Size(120, 33);
+            this.udCountBakers.TabIndex = 8;
             // 
             // Form1
             // 
@@ -604,10 +650,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udCountBakers)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udCountSales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udCountSellers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udCountBakers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -653,12 +702,16 @@
         private NumericUpDown udCount;
         private TrackBar tb1;
         private TabPage tabPage3;
+        private TabPage tabPage4;
         private Label label15;
         private Button btnAddBakers;
         private NumericUpDown udCountBakers;
-        private TabPage tabPage4;
         private Label label16;
         private Button btnAddSellers;
         private NumericUpDown udCountSellers;
+        private TabPage tabPage5;
+        private Label label17;
+        private Button buttonAddSales;
+        private NumericUpDown udCountSales;
     }
 }
