@@ -10,8 +10,9 @@ namespace DBGenerator
 {
     class DataBase
     {
-        private static String pathCSV = @"J:\DB\CDB\";
-        private static String path = @"J:\DB\KGBD.mdf";
+        private static String pathFolder = @"J:\";
+        private static String pathCSV = pathFolder+ @"DB\CDB\";
+        private static String path = pathFolder + @"DB\KGBD.mdf";
 
 
         SqlConnection sqlConnection = new(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+path+";Integrated Security=True;Connect Timeout=30");
